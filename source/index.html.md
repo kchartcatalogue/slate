@@ -2,13 +2,10 @@
 title: API Reference
 
 language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
-  - shell
-  - ruby
-  - python
-  - javascript
+  - python: Python
+  - json: JSON Response
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -20,168 +17,149 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Documentation for the Kittn API
+    content: Documentation for interacting with the unofficial APIs of Korean Chart Platforms
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Though Korean music platforms don't have public APIs similar to the ones kept by Spotify or Youtube, there are still easily accessible endpoints to fetch any information you want from their databases. The endpoints listed here were obtained by intercepting requests made by the apps or websites of the platforms, and while this might seem shady or illegal I have read terms of service and privacy policy of the platforms and there's nothing inherently wrong/illegal about this.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+I only wrote a language binding in Python for now. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
+# Melon
 
-> To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+> Define these headers and params at the beginning of your Python code to make the other requests simpler. 
+> The examples here will assume both are always being used.
 
 ```python
-import kittn
+headers = {
+  "Accept-Charset": "utf-8",
+  "Accept-Encoding": "gzip, deflate",
+  "Connection": "Keep-Alive",
+  "Host": "m2.melon.com",
+  "User-Agent": "AS40; Android 12; 6.7.8.1"
+}
 
-api = kittn.authorize('meowmeowmeow')
-```
+params = {
+  "cpId": "AS40",
+  "cpKey": "14LNC3" 
+}
+``` 
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
-```
+Melon does not require any sort of authentication to interact with their database.
 
-```javascript
-const kittn = require('kittn');
+I do recommend using the following headers and parameters to ensure requests don't fail a lot.
 
-let api = kittn.authorize('meowmeowmeow');
-```
+Header | Value
+-------- | -------
+|Accept-Charset|utf-8
+|Accept-Encoding|gzip,deflate
+|Connection|Keep-Alive
+|Host|m2.melon.com
+|User-Agent|AS40; Android 12; 6.7.8.1
 
-> Make sure to replace `meowmeowmeow` with your API key.
+Parameter | Value 
+----- | -----
+cpId | AS40
+cpKey | 14LNC3
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+## Top 100
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+> Make the request like this:
 
 ```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+import requests
+url = "https://m2.melon.com/m6/chart/ent/songChartList.json"
+response = requests.get(url, headers=headers)
+data = response.json()
 ```
 
-```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
+This endpoint retrieves the songs in the current Top 100 Chart and their positions.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://m2.melon.com/m6/chart/ent/songChartList.json`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+appVer | None | Can be set to any version of the Melon app, but not a required parameter.
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> Running the code above returns JSON structured like this (Change to JSON Response to read it):
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "httpsDomain": "https://m2.melon.com",
+  "response": {
+    "RANKDAY": "2024.04.07",
+    "RANKHOUR": "09:00",
+    "STATUS": "0",
+    "SONGLIST": [ {
+        "SONGID": "37138469",
+        "SONGNAME": "나는 아픈 건 딱 질색이니까",
+        "ALBUMID": "11402655",
+        "ALBUMNAME": "2",
+        "ARTISTLIST": [
+          {
+            "ARTISTID": "2137482",
+            "ARTISTNAME": "(여자)아이들"
+          }
+        ],
+        "PLAYTIME": "162",
+        "GENRELIST": [
+          {
+            "GENRECODE": "GN0200",
+            "GENRENAME": "댄스"
+          },
+          {
+            "GENRECODE": "GN2500",
+            "GENRENAME": "아이돌"
+          }
+        ],
+        "CURRANK": "1",
+        "PASTRANK": "1",
+        "RANKGAP": "0",
+        "RANKTYPE": "NONE",
+        "ISMV": false,
+        "ISADULT": false,
+        "ISFREE": false,
+        "ISHITSONG": false,
+        "ISHOLDBACK": false,
+        "ISTITLESONG": false,
+        "ISSERVICE": true,
+        "ISTRACKZERO": false,
+        "ALBUMIMG": "https://cdnimg.melon.co.kr/cm2/album/images/114/02/655/11402655_20240129121016_500.jpg?c78f36957ea2f748def29fe988f9518c/melon/resize/144/optimize/90",
+        "ALBUMIMGPATH": "https://cdnimg.melon.co.kr/cm2/album/images/114/02/655/11402655_20240129121016_500.jpg?c78f36957ea2f748def29fe988f9518c/melon/resize/144/optimize/90",
+        "ALBUMIMGLARGE": "https://cdnimg.melon.co.kr/cm2/album/images/114/02/655/11402655_20240129121016_500.jpg?c78f36957ea2f748def29fe988f9518c/melon/optimize/90",
+        "ALBUMIMGSMALL": "https://cdnimg.melon.co.kr/cm2/album/images/114/02/655/11402655_20240129121016_500.jpg?c78f36957ea2f748def29fe988f9518c/melon/resize/50/optimize/90",
+        "ISSUEDATE": "2024.01.29",
+        "CTYPE": "1",
+        "CONTSTYPECODE": "N10001"
+      } 
+      // Other 99 song elements with the same structure]
+    ],
+    "CHARTINFO": {
+      "LINKURL": "https://m2.melon.com/m6/chart/chartEntInfo.htm?cpId=AS40&appVer=6.7.8.1",
+      "LINKTYPE": "ZA"
+    },
+    "STATSELEMENTS": {
+      "IMPRESSIONID": "",
+      "RANGECODE": "1000002737"
+    },
+    "MENUID": "1000002721",
+    "SECTION": "멜론차트",
+    "PAGE": "멜론차트_TOP100NOW"
+  }
+  "httpDomain": "http://m2.melon.com"
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+## Hot 100
 
 ### HTTP Request
 
@@ -195,31 +173,11 @@ ID | The ID of the kitten to retrieve
 
 ## Delete a Specific Kitten
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
 ```python
-import kittn
+import K-Chart DAtabase
 
-api = kittn.authorize('meowmeowmeow')
+api = K-Chart DAtabase.authorize('meowmeowmeow')
 api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
 ```
 
 > The above command returns JSON structured like this:
