@@ -1,0 +1,619 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta
+            name="description"
+            content="Documentation for interacting with the unofficial APIs of Korean Chart Platforms"
+        >
+    <title>API Reference</title>
+
+    <style media="screen">
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #f92672;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sa {
+  color: #6c71c4;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="stylesheets/screen-9c19b03a.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-966d6edc.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-024da600.js"></script>
+
+    <script>
+      $(function() { setupCodeCopy(); });
+    </script>
+  </head>
+
+  <body class="index" data-languages="[&quot;python&quot;,&quot;json&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo-1e815a84.png" class="logo" alt="" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="python">Python</a>
+              <a href="#" data-language-name="json">JSON Response</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#melon" class="toc-h1 toc-link" data-title="Melon">Melon</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#top-100" class="toc-h2 toc-link" data-title="Top 100">Top 100</a>
+                  </li>
+                  <li>
+                    <a href="#hot-100" class="toc-h2 toc-link" data-title="Hot 100">Hot 100</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Though Korean music platforms don&#39;t have public APIs similar to the ones kept by Spotify or Youtube, there are still easily accessible endpoints to fetch any information you want from their databases. The endpoints listed here were obtained by intercepting requests made by the apps or websites of the platforms, and while this might seem shady or illegal I have read terms of service and privacy policy of the platforms and there&#39;s nothing inherently wrong/illegal about this.</p>
+
+<p>I only wrote a language binding in Python for now. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+
+<p>This example API documentation page was created with <a href="https://github.com/slatedocs/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+<h1 id='melon'>Melon</h1>
+<blockquote>
+<p>Define these headers and params at the beginning of your Python code to make the other requests simpler. 
+The examples here will assume both are always being used.</p>
+</blockquote>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">"Accept-Charset"</span><span class="p">:</span> <span class="s">"utf-8"</span><span class="p">,</span>
+  <span class="s">"Accept-Encoding"</span><span class="p">:</span> <span class="s">"gzip, deflate"</span><span class="p">,</span>
+  <span class="s">"Connection"</span><span class="p">:</span> <span class="s">"Keep-Alive"</span><span class="p">,</span>
+  <span class="s">"Host"</span><span class="p">:</span> <span class="s">"m2.melon.com"</span><span class="p">,</span>
+  <span class="s">"User-Agent"</span><span class="p">:</span> <span class="s">"AS40; Android 12; 6.7.8.1"</span>
+<span class="p">}</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">"cpId"</span><span class="p">:</span> <span class="s">"AS40"</span><span class="p">,</span>
+  <span class="s">"cpKey"</span><span class="p">:</span> <span class="s">"14LNC3"</span> 
+<span class="p">}</span>
+</code></pre></div>
+<p>Melon does not require any sort of authentication to interact with their database.</p>
+
+<p>I do recommend using the following headers and parameters to ensure requests don&#39;t fail a lot.</p>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Accept-Charset</td>
+<td>utf-8</td>
+</tr>
+<tr>
+<td>Accept-Encoding</td>
+<td>gzip,deflate</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td>Keep-Alive</td>
+</tr>
+<tr>
+<td>Host</td>
+<td>m2.melon.com</td>
+</tr>
+<tr>
+<td>User-Agent</td>
+<td>AS40; Android 12; 6.7.8.1</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cpId</td>
+<td>AS40</td>
+</tr>
+<tr>
+<td>cpKey</td>
+<td>14LNC3</td>
+</tr>
+</tbody></table>
+<h2 id='top-100'>Top 100</h2>
+<blockquote>
+<p>Make the request like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://m2.melon.com/m6/chart/ent/songChartList.json"</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre></div>
+<p>This endpoint retrieves the songs in the current Top 100 Chart and their positions.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://m2.melon.com/m6/chart/ent/songChartList.json</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>appVer</td>
+<td>None</td>
+<td>Can be set to any version of the Melon app, but not a required parameter.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Running the code above returns JSON structured like this (Change to JSON Response to read it):</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"httpsDomain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://m2.melon.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"RANKDAY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024.04.07"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"RANKHOUR"</span><span class="p">:</span><span class="w"> </span><span class="s2">"09:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"STATUS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"SONGLIST"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"SONGID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37138469"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"SONGNAME"</span><span class="p">:</span><span class="w"> </span><span class="s2">"나는 아픈 건 딱 질색이니까"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ALBUMID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11402655"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ALBUMNAME"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ARTISTLIST"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"ARTISTID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2137482"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"ARTISTNAME"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(여자)아이들"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"PLAYTIME"</span><span class="p">:</span><span class="w"> </span><span class="s2">"162"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"GENRELIST"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"GENRECODE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GN0200"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"GENRENAME"</span><span class="p">:</span><span class="w"> </span><span class="s2">"댄스"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"GENRECODE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GN2500"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"GENRENAME"</span><span class="p">:</span><span class="w"> </span><span class="s2">"아이돌"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"CURRANK"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"PASTRANK"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"RANKGAP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"RANKTYPE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NONE"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ISMV"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ISADULT"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ISFREE"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ISHITSONG"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ISHOLDBACK"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ISTITLESONG"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ISSERVICE"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ISTRACKZERO"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ALBUMIMG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdnimg.melon.co.kr/cm2/album/images/114/02/655/11402655_20240129121016_500.jpg?c78f36957ea2f748def29fe988f9518c/melon/resize/144/optimize/90"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ALBUMIMGPATH"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdnimg.melon.co.kr/cm2/album/images/114/02/655/11402655_20240129121016_500.jpg?c78f36957ea2f748def29fe988f9518c/melon/resize/144/optimize/90"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ALBUMIMGLARGE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdnimg.melon.co.kr/cm2/album/images/114/02/655/11402655_20240129121016_500.jpg?c78f36957ea2f748def29fe988f9518c/melon/optimize/90"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ALBUMIMGSMALL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdnimg.melon.co.kr/cm2/album/images/114/02/655/11402655_20240129121016_500.jpg?c78f36957ea2f748def29fe988f9518c/melon/resize/50/optimize/90"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ISSUEDATE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024.01.29"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"CTYPE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"CONTSTYPECODE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N10001"</span><span class="w">
+      </span><span class="p">}</span><span class="w"> 
+      </span><span class="err">//</span><span class="w"> </span><span class="err">Other</span><span class="w"> </span><span class="mi">99</span><span class="w"> </span><span class="err">song</span><span class="w"> </span><span class="err">elements</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">same</span><span class="w"> </span><span class="err">structure</span><span class="p">]</span><span class="w">
+    </span><span class="err">]</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"CHARTINFO"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"LINKURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://m2.melon.com/m6/chart/chartEntInfo.htm?cpId=AS40&amp;appVer=6.7.8.1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"LINKTYPE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZA"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"STATSELEMENTS"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"IMPRESSIONID"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"RANGECODE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000002737"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"MENUID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000002721"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"SECTION"</span><span class="p">:</span><span class="w"> </span><span class="s2">"멜론차트"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"PAGE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"멜론차트_TOP100NOW"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="nl">"httpDomain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://m2.melon.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='hot-100'>Hot 100</h2><h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the kitten to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">K</span><span class="o">-</span><span class="n">Chart</span> <span class="n">DAtabase</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">K</span><span class="o">-</span><span class="n">Chart</span> <span class="n">DAtabase</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint deletes a specific kitten.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the kitten to delete</td>
+</tr>
+</tbody></table>
+<h1 id='errors'>Errors</h1>
+<aside class="notice">
+This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+</aside>
+
+<p>The Kittn API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified kitten could not be found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone -- The kitten requested has been removed from our servers.</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&#39;m a teapot.</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="python">Python</a>
+                <a href="#" data-language-name="json">JSON Response</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
